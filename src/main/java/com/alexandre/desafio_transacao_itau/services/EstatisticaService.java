@@ -20,7 +20,10 @@ public class EstatisticaService {
     public TransacaoService transacaoService;
 
     public EstatisticaResponseDTO calculaEstatistica(int intervaloBusca) {
-        log.info("Buscando estatísticas pelo período de {} segundos", intervaloBusca);
+        log.info("Buscando estatisticas pelo periodo de {} segundos", intervaloBusca);
+
+        long start = System.currentTimeMillis();
+
         List<TransacaoRequestDTO> transacoes = transacaoService.buscarTransacoes(intervaloBusca);
 
         if (transacoes.isEmpty()) {
@@ -29,7 +32,13 @@ public class EstatisticaService {
 
         DoubleSummaryStatistics estatisticas = transacoes.stream().mapToDouble(TransacaoRequestDTO::valor).summaryStatistics();
 
-        log.info("Estatísticas retornadas com sucesso");
+        long finish = System.currentTimeMillis();
+
+        long tempoReq = finish - start;
+
+        System.out.println("Tempo de requisicao: " + tempoReq + " milissigundos");
+
+        log.info("Estatisticas retornadas com sucesso");
         return new EstatisticaResponseDTO(estatisticas.getCount(), estatisticas.getSum(), estatisticas.getAverage(), estatisticas.getMin(), estatisticas.getMax());
 
     }

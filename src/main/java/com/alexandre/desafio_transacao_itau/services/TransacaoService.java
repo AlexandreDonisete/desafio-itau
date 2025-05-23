@@ -20,7 +20,7 @@ public class TransacaoService {
     private final List<TransacaoRequestDTO> listaTransacao = new ArrayList<>();
 
     public void adicionarTransacao(TransacaoRequestDTO dto) {
-        log.info("Gravando transações {}", dto);
+        log.info("Gravando transacoes {}", dto);
 
         if (dto.dataHora().isAfter(OffsetDateTime.now())) {
             log.error("Data e hora futuras");
@@ -28,24 +28,24 @@ public class TransacaoService {
         }
 
         if (dto.valor() < 0) {
-            log.error("Valor não pode ser menor que zero");
-            throw new UnprocessableEntity("O valor não pode ser menor que zero");
+            log.error("Valor nao pode ser menor que zero");
+            throw new UnprocessableEntity("O valor nao pode ser menor que zero");
         }
 
         listaTransacao.add(dto);
-        log.info("Transações adicionadas com sucesso");
+        log.info("Transacoes adicionadas com sucesso");
     }
 
     public void limparTransacoes() {
-        log.info("Deletando transações");
+        log.info("Deletando transacoes");
         listaTransacao.clear();
-        log.info("Transações deletadas com sucesso");
+        log.info("Transacoes deletadas com sucesso");
     }
 
     public List<TransacaoRequestDTO> buscarTransacoes(int intervaloBusca) {
-        log.info("Buscando transações durante o período de {} segundos", intervaloBusca);
+        log.info("Buscando transacoes durante o periodo de {} segundos", intervaloBusca);
         OffsetDateTime dataHoraIntervalo = OffsetDateTime.now().minusSeconds(intervaloBusca);
-        log.info("Transações retornadas com sucesso");
+        log.info("Transacoes retornadas com sucesso");
         return listaTransacao.stream().filter(transacao -> transacao.dataHora().isAfter(dataHoraIntervalo)).toList();
     }
 
