@@ -17,10 +17,11 @@ O desenvolvimento foi realizado acompanhando, analisando e estudando os vídeos 
 - JUnit
   
 ## Swagger
+- Swagger disponivel na url ```http://localhost:8080/swagger-ui/index.html#/```
 ![Swagger](https://github.com/AlexandreDonisete/desafio-itau/blob/main/src/assets/swagger.png)
 
 ## Actuator
-Actuator disponivel na url ```http://localhost:8080/actuator```
+- Actuator disponivel na url ```http://localhost:8080/actuator```
 ![Swagger](https://github.com/AlexandreDonisete/desafio-itau/blob/main/src/assets/actuator.png)
 
 ## Como executar o projeto
